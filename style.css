@@ -1,0 +1,30 @@
+body {
+    background-color: #A3B5C0;
+}
+h1 {
+  color: #0E2038;
+  background-color: #758D9C;
+  padding: 7px;
+  text-align: center;
+}
+
+p, h1, li, button {
+  color: 0E2038;
+  font-family: Sans-Serif;
+}
+
+p, button {
+  margin-left: 50px;
+}
+
+#shoppingList li {
+  
+}
+
+#shoppingList li.bought {
+  text-decoration: line-through;
+  color: #213A5C;
+
+}
+
+  /* */
