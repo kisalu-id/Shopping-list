@@ -1,32 +1,55 @@
 body {
-  background-color: #A3B5C0;
+  background-color: hsl(206, 100%, 90%);
 }
 
 h1 {
-  color: #0E2038;
-  background-color: #758D9C;
+  background-color: #98BCE8;
   font-family: Sans-Serif;
   padding: 7px;
   text-align: center;
 
 }
 
-p, li, button {
+p, li, button, h1 {
   color: #0E2038;
   font-family: Sans-Serif;
   margin: 0% 20%
 }
 
 button {
-  margin-left: 50px;
-  background-color: #bfcdd6;
-  border-radius: 1px;
-  margin: 0% 20%
+  background-color: #98BCE8;
+  border-radius: 40px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+#inputBox {
+  flex: 1;
+  outline: none;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
+li:nth-child(odd){
+  background-color: #c4e3f8;
 }
 
 #shoppingList li.bought {
   text-decoration: line-through;
-  color: #213A5C;
+  color: #607796;
+}
+
+#shoppingList li {
 }
 
 .left-column, .right-column {
@@ -34,14 +57,19 @@ button {
   top: 0;
   bottom: 0;
   width: 20%;
+  background-image: url('foodPattern.png');
 }
 
 .left-column {
   left: 0;
-  background-image: url('foodPattern.png');
 }
 
 .right-column {
   right: 0;
-  background-image: url('foodPattern.png');
+}
+
+
+#end {
+  position: absolute;
+  bottom: 2%;
 }
