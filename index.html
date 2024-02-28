@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-buy list</title>
-  <meta charset="utf-8"/>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
+  <div class="image-column left-column"></div>
   <h1 id="mainTitle">To buy:</h1> 
+
+  <div class="row">
+    <input type="text" id="inputBox" placeholder="  Add an element">
+    <button oneclick="addElement()">Add item</button>
+
+  </div>
   <ul id="shoppingList">
     <li>Item 1</li>
     <li>Item 2</li>
     <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
   </ul>
-<button onclick="changeItem();">Cross Out</button>      <p>Have a nice day!</p>
+
+  <div class="image-column right-column"></div>
+
+    <button class="crossBtn" onclick="crossItem();">✓</button>
+    <button class="addBtn" onclick="changeQuant();">+</button>
+    <button class="substrBtn" onclick="changeQuant();">-</button>
+    <button class="deleteBtn" onclick="deleteItem();">x</button>
+  <br />
+  <p id="end">Have a nice day!</p>
+
+  <script src="script.js"></script>
 </body>
 </html>
 
