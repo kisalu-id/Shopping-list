@@ -1,34 +1,34 @@
 body {
   background-color: hsl(206, 100%, 90%);
+  font-family: "DM Sans";
 }
 
 h1 {
   background-color: #98BCE8;
-  font-family: Sans-Serif;
-  padding: 7px;
+  padding: 3px;
   text-align: center;
 
 }
 
-p, li, button, h1 {
+p, li, h1 {
   color: #0E2038;
-  font-family: Sans-Serif;
   margin: 0% 20%
 }
 
 button {
   background-color: #98BCE8;
-  border-radius: 40px;
+  border-radius: 30px;
   outline: none;
   border: none;
   cursor: pointer;
+  padding: 7px;
+  margin: 7px;
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding-left: 20%;
   padding-right: 20%;
 }
@@ -36,10 +36,21 @@ button {
 #inputBox {
   flex: 1;
   outline: none;
-  border: none;
+  border: 1px solid rgb(193, 198, 214);
   border-radius: 100px;
-  cursor: pointer;
+  cursor: text;
+  padding: 7px;
+  margin: 7px;
 }
+
+button:active{
+  background-color: rgb(193, 198, 214);
+  border: 1px solid #98BCE8;
+}
+.item i{
+
+}
+
 li:nth-child(odd){
   background-color: #c4e3f8;
 }
@@ -50,6 +61,9 @@ li:nth-child(odd){
 }
 
 #shoppingList li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 
 .left-column, .right-column {
