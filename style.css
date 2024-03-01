@@ -1,28 +1,49 @@
+:root{
+  --firstCol: #CCE9FF;
+  --secondCol: #0E2038;
+  --thirdCol: #98BCE8;
+  --fourthCol: #c4e3f8;
+  --backImg: url('foodPattern.png');
+}
+
+.nightMode{
+  --firstCol: #0E2038;
+  --secondCol: #CCE9FF;
+  --thirdCol: #243f5f;
+  --fourthCol: #1d3452;
+  --backImg: url('image-20.png');
+}
+
 body {
-  background-color: hsl(206, 100%, 90%);
+  background-color: var(--firstCol);
   font-family: "DM Sans";
 }
 
 h1 {
-  background-color: #98BCE8;
+  background-color: var(--thirdCol);
   padding: 3px;
   text-align: center;
 
 }
 
 p, li, h1 {
-  color: #0E2038;
+  color: var(--secondCol);
   margin: 0% 20%
 }
 
 button {
-  background-color: #98BCE8;
+  background-color: var(--thirdCol);
+  color: var(--secondCol);
   border-radius: 30px;
   outline: none;
   border: none;
   cursor: pointer;
   padding: 7px;
   margin: 7px;
+  /* margin: 0% 20%; */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
 }
 
 .row {
@@ -45,14 +66,14 @@ button {
 
 button:active{
   background-color: rgb(193, 198, 214);
-  border: 1px solid #98BCE8;
+  border: 1px solid var(--firstCol);
 }
 .item i{
 
 }
 
 li:nth-child(odd){
-  background-color: #c4e3f8;
+  background-color: var(--fourthCol);
 }
 
 #shoppingList li.bought {
@@ -66,12 +87,15 @@ li:nth-child(odd){
   margin-top: 5px;
 }
 
+
+
+
 .left-column, .right-column {
   position: fixed;
   top: 0;
   bottom: 0;
   width: 20%;
-  background-image: url('foodPattern.png');
+  background-image: var(--backImg);
 }
 
 .left-column {
