@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-buy list</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-buy list</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-  <div class="image-column left-column"></div>
-  <h1 id="mainTitle">To buy:</h1> 
+    <div class="image-column left-column"></div>
+    <h1 id="mainTitle">To buy:</h1> 
 
-  <div class="row">
-    <input type="text" id="inputBox" placeholder="  Add an element">
-    <button oneclick="addElement()">Add item</button>
+    <div class="row">
+        <input type="text" id="inputBox" placeholder="  Add an element">
+        <button onclick="addElement()">Add item</button>
+    </div>
 
-  </div>
-  <ul id="shoppingList">
-    <li>Item 1</li>
-    <li>Item 2</li>
-    <li>Item 3</li>
-    <li>Item 4</li>
-    <li>Item 5</li>
-  </ul>
+    <ul id="shoppingList">
+        <li>Item 1 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
+        <li>Item 2 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
+        <li>Item 3 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
+        <li>Item 4 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
+        <li>Item 5 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
+    </ul>
 
-  <div class="image-column right-column"></div>
+    <div class="image-column right-column"></div>
 
-    <button class="crossBtn" onclick="crossItem();">✓</button>
-    <button class="addBtn" onclick="changeQuant();">+</button>
-    <button class="substrBtn" onclick="changeQuant();">-</button>
-    <button class="deleteBtn" onclick="deleteItem();">x</button>
-  <br />
-  <p id="end">Have a nice day!</p>
 
-  <script src="script.js"></script>
+
+    <!-- <button class="crossBtn">✓</button> <button class="addBtn">+</button> <button class="substrBtn">-</button> <button class="deleteBtn">x</button>
+    -->
+    <br />
+
+    <p id="end">Have a nice day!</p>
+    <button id="modeSwitchBtn" onclick="nightMode();">Switch to Night Mode</button>
+    <script src="script.js"></script>
 </body>
 </html>
 
