@@ -5,11 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
         crossOut(item);
         deleteButton(item);
         editButton(item);
-        /*var editBtn = item.querySelector(".editBtn");
-        var crossOutBtn = item.querySelector(".crossBtn");
-        var substrBtn = item.querySelector(".substrBtn");
-        var addBtn = item.querySelector(".addBtn");
-        var deleteBtn = item.querySelector(".deleteBtn");*/
     });
 });
 
@@ -38,6 +33,13 @@ function addElement() {
     }
 }
 
+document.getElementById("inputBox").addEventListener("keydown", function(event) {
+    //check if the key pressed is the Enter key (key code 13)
+    if (event.keyCode === 13) {
+        addElement();
+    }
+});
+
 function createButtons() {
     var editBtn = document.createElement("button");
     editBtn.textContent = "E";
@@ -64,8 +66,18 @@ function createButtons() {
 
 function crossOut(item) {
     var crossBtn = item.querySelector(".crossBtn");
-        crossBtn.addEventListener('click', function() {
-            item.classList.toggle("bought");
+    crossBtn.addEventListener('click', function() {
+        item.classList.toggle("bought");
+
+        var list = document.getElementById("shoppingList");
+        if (item.classList.contains("bought")) {
+            list.appendChild(item);
+        } else {
+            var firstBoughtItem = list.querySelector(".bought");
+            if (firstBoughtItem) {
+                list.insertBefore(item, firstBoughtItem);
+            }
+        }
     });
 }
 
@@ -76,7 +88,20 @@ function deleteButton(item) {
     });
 }
 
-function editButton(item) {}
+function editButton(item) {
+    var editButton = item.querySelector(".editBtn");
+    editButton.addEventListener('click', function() {
+        var existingText = item.textContent.trim();
+        var newText = prompt("Edit element:", existingText);
+        if (newText !== null && newText.trim() !== "") {
+            item.inputValue = inputBox.trim();
+        }
+    });
+} // ^ The <span> element is an inline container used to group text or other inline elements. 
+//In the context of the script, the <span> element is used to separate the text content of the list item from the buttons.
+
+
+
 //crossBtn, .addBtn, .substrBtn, .deleteBtn
 
   //add button and quantity (with options kg/Stk/packs) for each, button to add new. do nice design
