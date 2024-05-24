@@ -1,3 +1,4 @@
+//camelCase
 document.addEventListener('DOMContentLoaded', function () {
     var listItems = document.querySelectorAll("#shoppingList li");
 
@@ -5,6 +6,18 @@ document.addEventListener('DOMContentLoaded', function () {
         crossOut(item);
         deleteButton(item);
         editButton(item);
+    });
+
+    var emojis = document.querySelectorAll("#shoppingList .emoji");
+    var emojiList = ['○', '🐇', '🐢', '🗿'];
+
+    emojis.forEach(function(emoji) {
+        emoji.addEventListener('click', function() {
+            var currEmoji = emoji.textContent.trim();
+            var currIndex = emojiList.indexOf(currEmoji);
+            var nextIndex = (currEmoji + 1) % emojiList.length; //ensures that when you reach the end of the array, you start back at the beginning
+            emoji.textContent = emojiList[nextIndex];
+        });
     });
 });
 
@@ -19,8 +32,16 @@ function addElement() {
     
     if (inputValue !== "") {
         var newListElement = document.createElement("li");
+
+        var emojiSpan = document.createElement("span");
+        emojiSpan.classList.add(emoji);
+        emojiSpan.textContent = '○'; //?
+
+
         newListElement.textContent = inputValue; //textContent property of DOM elements, text content of the element 
-        
+        newListElement.appendChild(button);
+        newListElement.appendChild(emojiSpan);
+
         var buttons = createButtons();
         buttons.forEach(button => {
             newListElement.appendChild(button);
@@ -42,7 +63,7 @@ document.getElementById("inputBox").addEventListener("keydown", function(event) 
 
 function createButtons() {
     var editBtn = document.createElement("button");
-    editBtn.textContent = "E";
+    editBtn.textContent = "Edit";
     editBtn.classList.add("editBtn");
 
     var crossBtn = document.createElement("button");
@@ -99,7 +120,6 @@ function editButton(item) {
     });
 } // ^ The <span> element is an inline container used to group text or other inline elements. 
 //In the context of the script, the <span> element is used to separate the text content of the list item from the buttons.
-
 
 
 //crossBtn, .addBtn, .substrBtn, .deleteBtn
