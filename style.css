@@ -1,5 +1,5 @@
 :root{
-    --firstCol: #CCE9FF;
+    --firstCol: #d2e9ff;
     --secondCol: #0E2038;
     --thirdCol: #98BCE8;
     --fourthCol: #c4e3f8;
@@ -8,8 +8,9 @@
 
 .nightMode{
     --firstCol: #0E2038;
-    --secondCol: #CCE9FF;
+    --secondCol: #d2e9ff;
     --thirdCol: #243f5f;
+    /*--thirdCol: #243f5f;*/
     --fourthCol: #1d3452;
     --backImg: url('SL-night-mode.png');
 }
@@ -17,17 +18,22 @@
 body {
     background-color: var(--firstCol);
     font-family: "DM Sans";
+    font-size: 135%;
 }
 
 h1 {
     background-color: var(--thirdCol);
-    padding: 3px;
     text-align: center;
+    color: var(--secondCol);
 }
 
-p, li, h1, button, #modeSwitchBtn {
+p, button, #modeSwitchBtn {
     color: var(--secondCol);
-    margin: 0% 20%
+    margin: 0% 21%
+}
+
+li { /*here ediiiit so the stripe will contionue*/
+    margin: 0% 21%
 }
 
 button {
@@ -37,46 +43,52 @@ button {
     outline: none;
     border: none;
     cursor: pointer;
-    margin: 1px;
+    margin: 4px;
     /* margin: 0% 20%; */
-    display: flex
+    display: flex;
+    font-size: 90%;
 }
 
 .crossBtn, .addBtn, .substrBtn, .deleteBtn, .editBtn {
     float: right;
     justify-content: space-between;
-
 }
 
 .row {
     display: flex;
-    align-items: center;
+    align-items: right;
     justify-content: space-between;
     padding-left: 20%;
     padding-right: 20%;
+    font-size: 80%;
+    margin: 5px;
 }
 
-#inputBox {
-    flex: 1;
+#inputBox, #inputBoxQuantity {
+    display: flex;
     outline: none;
-    border: 1px solid rgb(193, 198, 214);
+    border: 1px solid #c1c6d6;
     border-radius: 100px;
     cursor: text;
-    padding: 7px;
-    margin: 7px;
+
+}
+#inputBox {
+    width: 75%;
+}
+
+#inputBoxQuantity {
+
+    width: 10%;
 }
 
 button:active{
-    background-color: rgb(193, 198, 214);
+    background-color: #c1c6d6;
     border: 1px solid var(--firstCol);
-}
-
-.item i{
-
 }
 
 li:nth-child(odd){
     background-color: var(--fourthCol);
+    padding: 6px;
 }
 
 #shoppingList li.bought {
@@ -85,8 +97,13 @@ li:nth-child(odd){
 }
 
 #shoppingList li {
-    justify-content: space-between;
-    margin-top: 5px;
+    padding-left: 0px;
+    margin-top: 7px;
+    padding-right: 35px;
+}
+
+li::marker {
+    content: none; /*could be unicode checkmark symbol*/
 }
 
 .left-column, .right-column {
@@ -108,4 +125,16 @@ li:nth-child(odd){
 #end {
     position: absolute;
     bottom: 2%;
+}
+
+#modeSwitchBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    z-index: 1000; /*ensure it is on top of other elements*/
+}
+
+.emoji {
+    cursor: pointer;
 }
