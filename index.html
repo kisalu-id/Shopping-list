@@ -13,15 +13,16 @@
 
     <div class="row">
         <input type="text" id="inputBox" placeholder="  Add an element">
+        <input type="text" id="inputBoxQuantity" placeholder="  Quantity">
         <button onclick="addElement()">Add item</button>
     </div>
 
     <ul id="shoppingList">
-        <li>Item 1 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
-        <li>Item 2 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
-        <li>Item 3 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
-        <li>Item 4 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
-        <li>Item 5 <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">E</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 1</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
     </ul>
 
     <div class="image-column right-column"></div>
@@ -33,7 +34,7 @@
     <br />
 
     <p id="end">Have a nice day!</p>
-    <button id="modeSwitchBtn" onclick="nightMode();">Switch to Night Mode</button>
+    <button id="modeSwitchBtn" onclick="nightMode();">☀︎ / ☾</button>
     <script src="script.js"></script>
 </body>
 </html>
