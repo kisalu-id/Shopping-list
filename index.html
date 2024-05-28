@@ -8,8 +8,22 @@
 </head>
 
 <body>
-    <div class="image-column left-column"></div>
     <h1 id="mainTitle">To buy:</h1> 
+    <nav>
+        <div class="navPages">
+            <ul>
+                <li><input type="radio" id="tab1" name="tab" checked><label for="tab1">Groceries</label></li>
+                <li><input type="radio" id="tab2" name="tab"><label for="tab2">Drugstore</label></li>
+                <li><input type="radio" id="tab3" name="tab"><label for="tab3">Hardware store</label></li>
+                <li><input type="radio" id="tab4" name="tab"><label for="tab4">Other</label></li>
+            </ul>
+        </div>
+    </nav>
+    <button id="LogIn">Login</button>
+
+
+    <div class="image-column left-column"></div>
+
 
     <div class="row">
         <input type="text" id="inputBox" placeholder="  Add an element">
@@ -18,11 +32,11 @@
     </div>
 
     <ul id="shoppingList">
-        <li><span class="emoji">○</span> <span class="text">Item 1</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="substrBtn">-</button> <button class="addBtn">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 1</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
     </ul>
 
     <div class="image-column right-column"></div>
@@ -39,4 +53,9 @@
 </body>
 </html>
 
-<!-- -->
+<!--
+    frpm mobile move navig bar into hamburger
+quantity - editable by clicking on text, by clicking on +-, can add that while creating new list element on top of the page
+do several folders, to buy groceries, drogerie, household items, rest
+
+-->
