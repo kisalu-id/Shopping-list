@@ -1,9 +1,10 @@
 :root{
-    --firstCol: #d2e9ff;
+    --firstCol: rgb(210, 233, 255);
     --secondCol: #0E2038;
-    --thirdCol: #98BCE8;
+    --thirdCol: rgb(152, 188, 232);
     --fourthCol: #c4e3f8;
-    --backImg: url('SL-day-mode.png');
+    --fifthCol: #c1c6d6; /*hover*/
+    --backImg: url('aSL-day-mode.png');
 }
 
 .nightMode{
@@ -12,7 +13,7 @@
     --thirdCol: #243f5f;
     /*--thirdCol: #243f5f;*/
     --fourthCol: #1d3452;
-    --backImg: url('SL-night-mode.png');
+    --backImg: url('aSL-night-mode.png');
 }
 
 body {
@@ -29,11 +30,18 @@ h1 {
 
 p, button, #modeSwitchBtn {
     color: var(--secondCol);
-    margin: 0% 21%
+    margin: 0% 21%;
 }
 
-li { /*here ediiiit so the stripe will contionue*/
-    margin: 0% 21%
+ul#shoppingList {
+    margin: 0% 20%;
+    list-style: none;
+    padding: 0;
+
+}
+
+ul#shoppingList li {
+    margin: 5px;
 }
 
 button {
@@ -43,10 +51,14 @@ button {
     outline: none;
     border: none;
     cursor: pointer;
-    margin: 4px;
+    margin: 0;
     /* margin: 0% 20%; */
-    display: flex;
     font-size: 90%;
+}
+
+.quantityBtn {
+
+    align-items: right;
 }
 
 .crossBtn, .addBtn, .substrBtn, .deleteBtn, .editBtn {
@@ -67,26 +79,27 @@ button {
 #inputBox, #inputBoxQuantity {
     display: flex;
     outline: none;
-    border: 1px solid #c1c6d6;
+    border: 1px solid var(--fifthCol);
     border-radius: 100px;
     cursor: text;
 
 }
 #inputBox {
-    width: 75%;
+    width: 80%;
 }
 
 #inputBoxQuantity {
-
-    width: 10%;
+    margin-right: 6px;
+    margin-left: 10px;
+    width: 15%;
 }
 
-button:active{
-    background-color: #c1c6d6;
+button:active {
+    background-color: var(--fifthCol);
     border: 1px solid var(--firstCol);
 }
 
-li:nth-child(odd){
+#shoppingList li:nth-child(odd) {
     background-color: var(--fourthCol);
     padding: 6px;
 }
@@ -99,11 +112,9 @@ li:nth-child(odd){
 #shoppingList li {
     padding-left: 0px;
     margin-top: 7px;
-    padding-right: 35px;
-}
-
-li::marker {
-    content: none; /*could be unicode checkmark symbol*/
+    padding-right: 0px;
+    color: var(--secondCol);
+    padding: 6px;
 }
 
 .left-column, .right-column {
@@ -137,4 +148,70 @@ li::marker {
 
 .emoji {
     cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 0% 21%;
+    padding: 0 50px 0 0;
+    background-color: rgb(196, 169, 222);
+    /*border: 1px solid var(--thirdCol);*/
+    font-family: "DM Sans";
+    font-size: 60%;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    float: none;
+    padding: 2px 15px;
+}
+
+li a {
+    text-align: center;
+}
+
+nav ul li a {
+    display:flex;
+    text-align:justify;
+    text-decoration: none;
+    font-weight: bold;
+}
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    color: var(--secondCol);
+    background-color: rgb(178, 167, 214);
+    cursor: pointer;
+
+    margin: 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+label:hover {
+    background-color: pink;
+    border-radius: 5px;
+    padding-bottom: 70px;
+/*background-color: var(--fifthCol);*/
+}
+
+input[type="radio"]:checked + label {
+    /*background-color: var(--firstCol);*/
+    background-color: var(--firstCol);
+    padding-bottom: 70px;
+    border-radius: 5px;
+}
+
+
+button:hover {
+    /*background: rgb(255, 211, 218);*/
+    background: greenyellow;
 }
