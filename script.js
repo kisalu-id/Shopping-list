@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         crossOut(item);
         deleteButton(item);
         editButton(item);
+        quantityButtons(item);
 
         var emoji = item.querySelector(".emoji");
         addEmojiClickListener(emoji);
@@ -47,6 +48,7 @@ function addElement() {
     deleteButton(newListElement);
     editButton(newListElement);
     addEmojiClickListener(emojiSpan);
+    quantityButtons(item);
     }
 }
 
@@ -127,7 +129,28 @@ function addEmojiClickListener(emoji) {
     });
 }
 
+function qquantityButtons(item) {
+    var incrementBtn = item.querySelector(".quantityBtn.increment");
+    var decrementBtn = item.querySelector(".quantityBtn.decrement");
+    var quantitySpan = item.querySelector(".quantity");
 
+    incrementBtn.addEventListener('click', function() {
+        var quantity = quantitySpan.textContent;
+        quantitySpan.textContent = quantity +1;
+    });
+
+    decrementBtn.addEventListener('click', function() {
+        var quantity = quantitySpan.textContent;
+        if (quantity > 1) {
+        quantitySpan.textContent = quantity - 1;
+        } else {
+            deleteButton(item);
+        }
+    });
+
+
+
+}
   //crossBtn, .addBtn, .substrBtn, .deleteBtn
 
 
