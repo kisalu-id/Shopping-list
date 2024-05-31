@@ -12,10 +12,10 @@
     <nav>
         <div class="navPages">
             <ul>
-                <li><input type="radio" id="tab1" name="tab" checked><label for="tab1">Groceries</label></li>
-                <li><input type="radio" id="tab2" name="tab"><label for="tab2">Drugstore</label></li>
-                <li><input type="radio" id="tab3" name="tab"><label for="tab3">Hardware store</label></li>
-                <li><input type="radio" id="tab4" name="tab"><label for="tab4">Other</label></li>
+                <li><input type="radio" id="tab1" name="tab" checked><label for="tab1" data-page="groceries">Groceries</label></li>
+                <li><input type="radio" id="tab2" name="tab"><label for="tab2" data-page="drugstore">Drugstore</label></li>
+                <li><input type="radio" id="tab3" name="tab"><label for="tab3" data-page="hardware-store">Hardware store</label></li>
+                <li><input type="radio" id="tab4" name="tab"><label for="tab4" data-page="other">Other</label></li>
             </ul>
         </div>
     </nav>
@@ -32,11 +32,11 @@
     </div>
 
     <ul id="shoppingList">
-        <li><span class="emoji">○</span> <span class="text">Item 1</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn decrement">-</button> <span class="quantity">1</span> <button class="quantityBtn increment">+</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 1</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
     </ul>
 
     <div class="image-column right-column"></div>
