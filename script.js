@@ -1,6 +1,25 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-    var listItems = document.querySelectorAll("#shoppingList li");
+    //event delegation is the process of handling events on a parent element instead of binding the event listener to each child element individually
+    //getElementById("shoppingList") returns a single element object representing the element 
+    //is used when you want to manipulate the shoppingList element itself or when you want to use event delegation to handle events for its children
+    var shoppingList = document.getElementById("shoppingList");
+    var navPages = document.querySelectorAll('nav input[name="tab"]');
+    var loginBtn = document.getElementById("LogIn");
+
+
+
+    //a common way to define an event listener function where e stands for the event object
+    //this event object contains a lot of information about the event that occurred
+    //anonymous function that takes one parameter e, which is the event object
+    //is typically used as a callback for event listeners
+    shoppingList.addEventListener('click', function (e) { //e is the event object, automatically passed to the event handler function when an event occurs
+        if (e.target && e.target.classList.contains('deleteBtn')) {
+            deleteItem()
+        }
+
+
+    });
 
     listItems.forEach(function(item) {
         crossOut(item);
@@ -38,6 +57,8 @@ function addElement() {
     newListElement.appendChild(emojiSpan);
     newListElement.appendChild(textSpan);
 
+
+
     var buttons = createButtons();
     buttons.forEach(button => {
         newListElement.appendChild(button);
@@ -67,19 +88,25 @@ function createButtons() {
     crossBtn.textContent = "✓";
     crossBtn.classList.add("crossBtn");
 
+
+
     var substrBtn = document.createElement("button");
-    substrBtn.textContent = "-";
-    substrBtn.classList.add("substrBtn");
+    substrBtn.textContent = "+";
+    substrBtn.classList.add(".quantityBtn.increment");
+
+    var quantity = document.createElement("span");
+    quantity.textContent = "1";
+    quantity.classList.add("quantity");
 
     var addBtn = document.createElement("button");
-    addBtn.textContent = "+";
-    addBtn.classList.add("addBtn");
+    addBtn.textContent = "-";
+    addBtn.classList.add(".quantityBtn.decrement");
 
     var deleteBtn = document.createElement("button");
     deleteBtn.textContent = "x";
     deleteBtn.classList.add("deleteBtn");
 
-    return [deleteBtn, substrBtn, addBtn, crossBtn, editBtn];
+    return [deleteBtn, substrBtn, quantity, addBtn, crossBtn, editBtn];
 }
 
 function crossOut(item) {
@@ -99,11 +126,8 @@ function crossOut(item) {
     });
 }
 
-function deleteButton(item) {
-    var deleteBtn = item.querySelector(".deleteBtn");
-    deleteBtn.addEventListener('click', function() {
-        item.remove();
-    });
+function deleteItem(item) {
+    item.remove();
 }
 
 function editButton(item) {
@@ -153,7 +177,8 @@ function qquantityButtons(item) {
 }
   //crossBtn, .addBtn, .substrBtn, .deleteBtn
 
-
+//if quantity 0 crossOut()
+//if crossOut set emoji to default
 
   //add button and quantity (with options kg/pcs/packs) for each
   //add tags(specific shop, or type of shop, z. B. cosmetic shop or pharmacy)
