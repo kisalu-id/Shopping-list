@@ -1,61 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-buy list</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+:root{
+    --firstCol: rgb(210, 233, 255);
+    --secondCol: #0E2038;
+    --thirdCol: rgb(152, 188, 232);
+    --fourthCol: #c4e3f8;
+    --fifthCol: #c1c6d6; /*hover*/
+    --backImg: url('aSL-day-mode.png');
+}
 
-<body>
-    <h1 id="mainTitle">To buy:</h1> 
-    <nav>
-        <div class="navPages">
-            <ul>
-                <li><input type="radio" id="tab1" name="tab" checked><label for="tab1" data-page="groceries">Groceries</label></li>
-                <li><input type="radio" id="tab2" name="tab"><label for="tab2" data-page="drugstore">Drugstore</label></li>
-                <li><input type="radio" id="tab3" name="tab"><label for="tab3" data-page="hardware-store">Hardware store</label></li>
-                <li><input type="radio" id="tab4" name="tab"><label for="tab4" data-page="other">Other</label></li>
-            </ul>
-        </div>
-    </nav>
-    <button id="LogIn">Login</button>
+.nightMode{
+    --firstCol: #0E2038;
+    --secondCol: #d2e9ff;
+    --thirdCol: #243f5f;
+    /*--thirdCol: #243f5f;*/
+    --fourthCol: #1d3452;
+    --backImg: url('SL-night-mode.png');
+}
+
+body {
+    background-color: var(--firstCol);
+    font-family: "DM Sans";
+    font-size: 135%;
+}
+
+h1 {
+    background-color: var(--thirdCol);
+    text-align: center;
+    color: var(--secondCol);
+}
+
+p, button, #modeSwitchBtn {
+    color: var(--secondCol);
+    margin: 0% 21%;
+}
+
+ul#shoppingList {
+    margin: 0% 20%;
+    list-style: none;
+    padding: 0;
+
+}
+
+ul#shoppingList li {
+    margin: 5px;
+}
+
+button {
+    background-color: var(--thirdCol);
+    color: var(--secondCol);
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    /* margin: 0% 20%; */
+    font-size: 90%;
+}
+
+.quantityBtn {
+
+    align-items: right;
+}
+
+.crossBtn, .addBtn, .substrBtn, .deleteBtn, .editBtn {
+    float: right;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    align-items: right;
+    justify-content: space-between;
+    padding-left: 20%;
+    padding-right: 20%;
+    font-size: 80%;
+    margin: 5px;
+}
+
+#inputBox, #inputBoxQuantity {
+    display: flex;
+    outline: none;
+    border: 1px solid var(--fifthCol);
+    border-radius: 100px;
+    cursor: text;
+
+}
+#inputBox {
+    width: 80%;
+}
+
+#inputBoxQuantity {
+    margin-right: 6px;
+    margin-left: 10px;
+    width: 15%;
+}
+
+button:active {
+    background-color: var(--fifthCol);
+    border: 1px solid var(--firstCol);
+}
+
+#shoppingList li:nth-child(odd) {
+    background-color: var(--fourthCol);
+    padding: 6px;
+}
+
+#shoppingList li.bought {
+    text-decoration: line-through;
+    color: #607796;
+}
+
+#shoppingList li {
+    padding-left: 0px;
+    margin-top: 7px;
+    padding-right: 0px;
+    color: var(--secondCol);
+    padding: 6px;
+}
+
+.left-column, .right-column {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    background-image: var(--backImg);
+}
+
+.left-column {
+    left: 0;
+}
+
+.right-column {
+    right: 0;
+}
+
+#end {
+    position: absolute;
+    bottom: 2%;
+}
+
+#modeSwitchBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    z-index: 1000; /*ensure it is on top of other elements*/
+}
+
+.emoji {
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 0% 21%;
+    padding: 0 50px 0 0;
+    background-color: rgb(196, 169, 222);
+    /*border: 1px solid var(--thirdCol);*/
+    font-family: "DM Sans";
+    font-size: 60%;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    float: none;
+    padding: 2px 15px;
+}
+
+li a {
+    text-align: center;
+}
 
 
-    <div class="image-column left-column"></div>
+nav ul li a {
+    display:flex;
+    text-align:justify;
+    text-decoration: none;
+    font-weight: bold;
+}
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    color: var(--secondCol);
+    background-color: rgb(178, 167, 214);
+    cursor: pointer;
+    margin: 0;
+    border-radius: 5px;
+    padding: 10px;
+    padding-bottom: 20px;
+}
+
+label:hover {
+    background-color: pink;
+    border-radius: 5px;
+    padding-bottom: 20px;
+/*background-color: var(--fifthCol);*/
+}
+
+input[type="radio"]:checked + label {
+    /*background-color: var(--firstCol);*/
+    background-color: var(--firstCol);
+    padding-bottom: 20px;
+    border-radius: 5px;
+}
 
 
-    <div class="row">
-        <input type="text" id="inputBox" placeholder="  Add an element">
-        <input type="text" id="inputBoxQuantity" placeholder="  Quantity">
-        <button onclick="addElement()">Add item</button>
-    </div>
+button:hover {
+    /*background: rgb(255, 211, 218);*/
+    background: greenyellow;
+}
 
-    <ul id="shoppingList">
-        <li><span class="emoji">○</span> <span class="text">Item 1</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-    </ul>
-
-    <div class="image-column right-column"></div>
-
-
-
-    <!-- <button class="crossBtn">✓</button> <button class="addBtn">+</button> <button class="substrBtn">-</button> <button class="deleteBtn">x</button>
-    -->
-    <br />
-
-    <p id="end">Have a nice day!</p>
-    <button id="modeSwitchBtn" onclick="nightMode();">☀︎ / ☾</button>
-    <script src="script.js"></script>
-</body>
-</html>
-
-<!--
-    frpm mobile move navig bar into hamburger
-quantity - editable by clicking on text, by clicking on +-, can add that while creating new list element on top of the page
-do several folders, to buy groceries, drogerie, household items, rest
-
--->
+#groceries, #drugstore {
+    margin: 0% 21%;
+}
