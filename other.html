@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-buy list</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <button id="LogIn">Login</button>
+        <h1 id="mainTitle">To buy:</h1>
+        <span class="menuBurger">&#9776;</span>
+    </div>
+
+    <nav>
+        <div class="navPages">
+            <ul>
+                <li><input type="radio" id="tab1" name="tab"><label for="tab1" data-page="groceries">Groceries</label></li>
+                <li><input type="radio" id="tab2" name="tab"><label for="tab2" data-page="drugstore">Drugstore</label></li>
+                <li><input type="radio" id="tab3" name="tab"><label for="tab3" data-page="hardware-store">Hardware store</label></li>
+                <li><input type="radio" id="tab4" name="tab" checked><label for="tab4" data-page="other">Other</label></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="row">
+        <input type="text" id="inputBox" placeholder="  Add an element">
+        <input type="text" id="inputBoxQuantity" placeholder="  Quantity">
+        <button onclick="addElement()">Add item</button>
+    </div>
+
+
+    <ul id="other" class="shoppingList">
+        <li><span class="emoji">○</span> <span class="text">Example 1</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Example 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+    </ul>
+
+
+    <div class="image-column left-column"></div>
+    <div class="image-column right-column"></div>
+    <br />
+
+
+    <footer>
+        <p id="end">Have a nice day!</p>
+    </footer>
+    
+    <button id="modeSwitchBtn" onclick="nightMode();">☀︎ / ☾</button>
+    <script src="script.js"></script>
+</body>
+</html>
