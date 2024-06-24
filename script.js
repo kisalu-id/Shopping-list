@@ -74,10 +74,13 @@ document.querySelectorAll('nav input[type="radio"]').forEach(function (radio) {
 });
 
 function adjustQuantity(item, change) {
-    var prevQuantity = .......;
-    var newQuantity = prevQuantity + change;
+    var quantitySpan = item.querySelector(".quantity");
+    var newQuantity = parseInt(quantitySpan.textContent);
+    newQuantity = newQuantity + change;
     if (newQuantity > 0) {
         quantitySpan.textContent = newQuantity;
+    } else {
+        item.remove()
     }
 }
 
@@ -172,25 +175,6 @@ function addEmojiClickListener(emoji) {
     });
 }
 
-function quantityButtons(item) {
-    var incrementBtn = item.querySelector(".quantityBtn.increment");
-    var decrementBtn = item.querySelector(".quantityBtn.decrement");
-    var quantitySpan = item.querySelector(".quantity");
-
-    incrementBtn.addEventListener('click', function () {
-        var quantity = parseInt(quantitySpan.textContent);
-        quantitySpan.textContent = quantity + 1;
-    });
-
-    decrementBtn.addEventListener('click', function () {
-        var quantity = parseInt(quantitySpan.textContent);
-        if (quantity > 1) {
-            quantitySpan.textContent = quantity - 1;
-        } else {
-            item.remove();
-        }
-    });
-}
 
 
 
