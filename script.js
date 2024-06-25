@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     
+    document.querySelectorAll('.shoppingList .emoji').forEach(addEmojiClickListener);
+    document.getElementById("addItem").addEventListener("click", addElement);
     
     function crossOut(item) { /*
         var crossBtn = item.querySelector(".crossBtn");
@@ -62,52 +64,74 @@ document.addEventListener('DOMContentLoaded', function () {
             textSpan.textContent = newText.trim();
         }
     }
-});
+
+        
+
+    function adjustQuantity(item, change) {
+        var quantitySpan = item.querySelector(".quantity");
+        var newQuantity = parseInt(quantitySpan.textContent);
+        newQuantity = newQuantity + change;
+        if (newQuantity > 0) {
+            quantitySpan.textContent = newQuantity;
+        } else {
+            item.remove()
+        }
+    }
+
+
     
-document.querySelectorAll('nav input[type="radio"]').forEach(function (radio) {
-    radio.addEventListener('change', function () {
-        const page = this.nextElementSibling.getAttribute('data-page');
-        if (page) {
-            window.location.href = page + '.html';
+
+
+    function addEmojiClickListener(emoji) {
+        var emojiList = ['○', '🐇', '🐢', '🗿'];
+        emoji.addEventListener('click', function () {
+            var currEmoji = emoji.textContent.trim();
+            var CurrIndex = emojiList.indexOf(currEmoji);
+            var nextIndex = (CurrIndex + 1) % emojiList.length;
+            emoji.textContent = emojiList[nextIndex];
+        });
+    }
+
+
+
+    document.getElementById("inputBox").addEventListener("keydown", function (event) {
+        if (event.keyCode === 13) {
+            addElement();
         }
     });
+
+
+    document.querySelectorAll('nav input[type="radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            const page = this.nextElementSibling.getAttribute('data-page');
+            if (page) {
+                window.location.href = page + '.html';
+            }
+        });
+    });
+
 });
 
-function adjustQuantity(item, change) {
-    var quantitySpan = item.querySelector(".quantity");
-    var newQuantity = parseInt(quantitySpan.textContent);
-    newQuantity = newQuantity + change;
-    if (newQuantity > 0) {
-        quantitySpan.textContent = newQuantity;
-    } else {
-        item.remove()
-    }
-}
-
-function nightMode() {
-    var body = document.body;
-    body.classList.toggle('nightMode');
-}
-
 function addElement() {
-    var inputValue = inputBox.value.trim();
-    var inputQuantity = inputBoxQuantity.value.trim(); //trim() removes whitespace from both ends of a string
 
-        if (inputValue !== "") {
-        var currentPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
-        var currentList = shoppingLists[currentPage];
+    var inputValue = document.getElementById('inputBox').value.trim();
+    var inputQuantity = document.getElementById('inputBoxQuantity').value.trim();
 
-        var newListElement = document.createElement("li");
+    if (inputValue !== "") {
+        const currentPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
+        const currentList = shoppingLists[currentPage];
 
-        var emojiSpan = document.createElement("span");
+        const newListElement = document.createElement("li");
+
+        const emojiSpan = document.createElement("span");
         emojiSpan.classList.add("emoji");
         emojiSpan.textContent = '○';
 
-        var textSpan = document.createElement("span");
+        const textSpan = document.createElement("span");
         textSpan.classList.add("text");
         textSpan.textContent = inputValue;
 
-        var quantitySpan = document.createElement("span");
+        const quantitySpan = document.createElement("span");
         quantitySpan.classList.add("quantity");
         quantitySpan.textContent = inputQuantity ? inputQuantity : '1';
 
@@ -115,27 +139,18 @@ function addElement() {
         newListElement.appendChild(textSpan);
         newListElement.appendChild(quantitySpan);
 
-        var buttons = createButtons();
+        const buttons = createButtons();
         buttons.forEach(button => {
             newListElement.appendChild(button);
         });
         currentList.appendChild(newListElement);
         inputBox.value = "";
         inputBoxQuantity.value = "";
-
-        crossOut(newListElement);
-        deleteButton(newListElement);
-        editButton(newListElement);
         addEmojiClickListener(emojiSpan);
-        quantityButtons(newListElement);
     }
 }
 
-document.getElementById("inputBox").addEventListener("keydown", function (event) {
-    if (event.keyCode === 13) {
-        addElement();
-    }
-});
+
 
 function createButtons() {
     var editBtn = document.createElement("button");
@@ -165,19 +180,11 @@ function createButtons() {
     return [deleteBtn, substrBtn, quantity, addBtn, crossBtn, editBtn];
 }
 
-function addEmojiClickListener(emoji) {
-    var emojiList = ['○', '🐇', '🐢', '🗿'];
-    emoji.addEventListener('click', function () {
-        var currEmoji = emoji.textContent.trim();
-        var CurrIndex = emojiList.indexOf(currEmoji);
-        var nextIndex = (CurrIndex + 1) % emojiList.length;
-        emoji.textContent = emojiList[nextIndex];
-    });
+
+function nightMode() {
+    var body = document.body;
+    body.classList.toggle('nightMode');
 }
-
-
-
-
 
 
 
