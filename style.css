@@ -104,7 +104,7 @@ input[type="radio"] {
 /*background-color: var(--fifthCol);*/
 }
 
-input[type="radio"]:checked + label {
+.navPages input[type="radio"]:checked + label {
     /*background-color: var(--firstCol);*/
     background-color: var(--firstCol);
     padding-bottom: 40px;
@@ -134,7 +134,7 @@ button:hover, .menuBurger:hover {
     top: 0;
     right: 0;
     height: 100vh;
-    width:30%;
+    width:10%;
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -155,6 +155,14 @@ button:hover, .menuBurger:hover {
     border-radius: 5px;
 
 /*background-color: var(--fifthCol);*/
+}
+
+.sideBar input[type="radio"]:checked + label {
+    /*background-color: var(--firstCol);*/
+    background-color: var(--firstCol);
+    padding: 5px;
+
+    border-radius: 0px;
 }
 
 p, button, #modeSwitchBtn {
