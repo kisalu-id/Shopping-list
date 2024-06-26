@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleEmoji(target);
         }
     });
-    
+
+    document.getElementById("loginButton").addEventListener('click', login);
+
     document.querySelectorAll('.shoppingList .emoji').forEach(addEmojiClickListener);
     document.getElementById("addItem").addEventListener("click", addElement);
     
@@ -114,12 +116,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function addElement() {
 
-    var inputValue = document.getElementById('inputBox').value.trim();
-    var inputQuantity = document.getElementById('inputBoxQuantity').value.trim();
+    const inputValue = document.getElementById('inputBox').value.trim();
+    const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
+    const currentPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
+    const currentList = shoppingLists[currentPage];
+
 
     if (inputValue !== "") {
-        const currentPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
-        const currentList = shoppingLists[currentPage];
 
         const newListElement = document.createElement("li");
 
@@ -133,7 +136,7 @@ function addElement() {
 
         const quantitySpan = document.createElement("span");
         quantitySpan.classList.add("quantity");
-        quantitySpan.textContent = inputQuantity ? inputQuantity : '1';
+        quantitySpan.textContent = inputQuantity;
 
         newListElement.appendChild(emojiSpan);
         newListElement.appendChild(textSpan);
@@ -143,9 +146,12 @@ function addElement() {
         buttons.forEach(button => {
             newListElement.appendChild(button);
         });
+
         currentList.appendChild(newListElement);
+
         inputBox.value = "";
         inputBoxQuantity.value = "";
+
         addEmojiClickListener(emojiSpan);
     }
 }
@@ -165,9 +171,6 @@ function createButtons() {
     substrBtn.textContent = "+";
     substrBtn.classList.add("quantityBtn", "increment");
 
-    var quantity = document.createElement("span");
-    quantity.textContent = "1";
-    quantity.classList.add("quantity");
 
     var addBtn = document.createElement("button");
     addBtn.textContent = "-";
@@ -177,7 +180,7 @@ function createButtons() {
     deleteBtn.textContent = "x";
     deleteBtn.classList.add("deleteBtn");
 
-    return [deleteBtn, substrBtn, quantity, addBtn, crossBtn, editBtn];
+    return [deleteBtn, substrBtn, addBtn, crossBtn, editBtn];
 }
 
 
