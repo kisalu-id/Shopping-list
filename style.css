@@ -122,8 +122,50 @@ button:hover, .menuBurger:hover {
     .menuBurger {
         display: flex;
     }
-    nav .navPages {
-        display:none;
+    .navPages {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: pink;
+    }
+    .navPages ul {
+        width: 100%;
+        flex-direction: column;
+    }
+    .navPages label {
+        display: flex;
+        font-size: 150%;
+        color: rgb(103, 58, 58);
+        background-color: rgb(169, 156, 209);
+
+        border-radius: none;
+        border: none;
+        transition: none;
+        box-shadow: none;
+        border-color: none;
+        /* color: var(--secondCol);
+        background-color: var(--thirdCol); */
+        cursor: pointer;
+        border-radius: 0;
+        padding: 5px;
+
+    }
+
+    .navPages label:hover {
+        background-color: var(--fourthCol);
+        border-radius: 0;
+        padding: 5px;
+    /*background-color: var(--fifthCol);*/
+    }
+    
+    .navPages input[type="radio"]:checked + label {
+        /*background-color: var(--firstCol);*/
+        background-color: var(--firstCol);
+        padding: 8px;
+        border-radius: 0px;
+    }
+    .navPages.show {
+        display: flex;
     }
 }
 
