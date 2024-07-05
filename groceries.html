@@ -12,16 +12,8 @@
     <div class="header">
         <button id="LogIn">Login</button>
         <h1 id="mainTitle">To buy:</h1>
-        <span class="menuBurger">&#9776;</span>
+        <span id="menuBurger" class="menuBurger">&#9776;</span>
     </div>
-    <nav class="sideBar">
-        <ul>
-            <li><input type="radio" id="tab1" name="tab" checked><label for="tab1" data-page="groceries">Groceries</label></li>
-            <li><input type="radio" id="tab2" name="tab"><label for="tab2" data-page="drugstore">Drugstore</label></li>
-            <li><input type="radio" id="tab3" name="tab"><label for="tab3" data-page="hardware-store">Hardware store</label></li>
-            <li><input type="radio" id="tab4" name="tab"><label for="tab4" data-page="other">Other</label></li>
-        </ul>
-    </nav>
     <nav class="navPages">
         <ul>
             <li><input type="radio" id="tab1" name="tab" checked><label for="tab1" data-page="groceries">Groceries</label></li>
@@ -47,24 +39,8 @@
         <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
     </ul>
 
-
-    <ul id="hardwareStore" class="shoppingList" style="display: none;">
-        <li><span class="emoji">○</span> <span class="text">Example 1 aaa h</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Example 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-    </ul>
-
-
-    <ul id="other" class="shoppingList" style="display: none;">
-        <li><span class="emoji">○</span> <span class="text">Example 1</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Example 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-    </ul>
-
-
-    
     <div class="image-column left-column"></div>
     <div class="image-column right-column"></div>
-
-
 
     <!-- <button class="crossBtn">✓</button> <button class="addBtn">+</button> <button class="substrBtn">-</button> <button class="deleteBtn">x</button>
     -->
@@ -77,8 +53,7 @@
 </html>
 
 <!--
-    frpm mobile move navig bar into hamburger
+from mobile move navig bar into hamburger
 quantity - editable by clicking on text, by clicking on +-, can add that while creating new list element on top of the page
 do several folders, to buy groceries, drogerie, household items, rest
-
 -->
