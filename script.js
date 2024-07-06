@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
             adjustQuantity(target.closest('li'), -1);
         } else if (target.matches('.emoji')) {
             toggleEmoji(target);
+        } else if (target.matches('.menuBurger')) {
+            navPages.classList.toggle('show');
         }
     });
 
