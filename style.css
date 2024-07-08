@@ -37,10 +37,30 @@ h1 {
 
 
 .menuBurger {
-    font-size: 25px;
-    font-weight: bolder;
     cursor: pointer;
-    color: var(--secondCol);
+    margin: 6px;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 4px;
+    margin: 6px;
+    border-radius: 15px;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.change .bar1 {
+    transform: rotate(-45deg) translate(-10px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+    /* transform: rotate(45deg) translate(-4px, -3px); */
+}
+
+.change .bar3 {
+    transform: rotate(45deg) translate(-8px, -4px);
 }
 
 .header {
@@ -120,7 +140,7 @@ button:hover, .menuBurger:hover {
 
 @media screen and (max-width: 650px) {
     .menuBurger {
-        display: flex;
+        display: inline-block;
     }
     .navPages {
         display: none;
@@ -247,7 +267,7 @@ button:active {
     border: 1px solid var(--fifthCol);
     border-radius: 100px;
     cursor: text;
-    padding-left: 20px;
+    padding-left: 3%;
 }
 #inputBox {
     width: 80%;
