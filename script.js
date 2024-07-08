@@ -1,11 +1,11 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     var currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     const shoppingLists = {
-        groseries: document.getElementById("groceries"),
+        groceries: document.getElementById("groceries"),
         drugstore: document.getElementById("drugstore"),
         hardwareStore: document.getElementById("hardwareStore"),
-        other: document.getElementById("other")
+        other: document.getElementById("other"),
+        todo: document.getElementById("todo")
     };
 
     var navPages = document.querySelectorAll('nav input[name="tab"]');
@@ -16,25 +16,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.addEventListener('click', function (event) {
         const target = event.target;
+        listItem = target.closest('li')
         if (target.matches('.shoppingList .deleteBtn')) {
-            deleteItem(target.closest('li'));
+            deleteItem(listItem);
         } else if (target.matches('.shoppingList .crossBtn')) {
-            crossOut(target.closest('li'));
+            crossOut(listItem);
         } else if (target.matches('.shoppingList .editBtn')) {
-            editButton(target.closest('li'));
+            editButton(listItem);
         } else if (target.matches('.shoppingList .quantityBtn.increment')) {
-            adjustQuantity(target.closest('li'), 1);
+            adjustQuantity(listItem, 1);
         } else if (target.matches('.shoppingList .quantityBtn.decrement')) {
-            adjustQuantity(target.closest('li'), -1);
+            adjustQuantity(listItem, -1);
         } else if (target.matches('.emoji')) {
             toggleEmoji(target);
         } else if (target.matches('.menuBurger')) {
-            navPages.classList.toggle('show');
+            navPages.forEach(page => page.classList.toggle('show'));
         }
     });
 
     document.getElementById("loginButton").addEventListener('click', login);
-
     document.querySelectorAll('.shoppingList .emoji').forEach(addEmojiClickListener);
     document.getElementById("addItem").addEventListener("click", addElement);
     
@@ -54,6 +54,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    var menuBurger = document.querySelector('.menuBurger');
+    menuBurger.addEventListener('click', function() {
+        menuBurger.classList.toggle('change');
+    });
+
     function deleteItem(item) {
         item.remove();
     }
@@ -69,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-        
+
 
     function adjustQuantity(item, change) {
         var quantitySpan = item.querySelector(".quantity");
@@ -90,8 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var emojiList = ['○', '🐇', '🐢', '🗿'];
         emoji.addEventListener('click', function () {
             var currEmoji = emoji.textContent.trim();
-            var CurrIndex = emojiList.indexOf(currEmoji);
-            var nextIndex = (CurrIndex + 1) % emojiList.length;
+            var currIndex = emojiList.indexOf(currEmoji);
+            var nextIndex = (currIndex + 1) % emojiList.length;
             emoji.textContent = emojiList[nextIndex];
         });
     }
@@ -114,49 +119,55 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
+    function addElement() {
+
+        const inputValue = document.getElementById('inputBox').value.trim();
+        const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
+        const currentPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
+        const currentList = shoppingLists[currentPage];
+    
+    
+        if (inputValue !== "") {
+    
+            const newListElement = document.createElement("li");
+    
+            const emojiSpan = document.createElement("span");
+            emojiSpan.classList.add("emoji");
+            emojiSpan.textContent = '○';
+    
+            const textSpan = document.createElement("span");
+            textSpan.classList.add("text");
+            textSpan.textContent = inputValue;
+    
+            const quantitySpan = document.createElement("span");
+            quantitySpan.classList.add("quantity");
+            quantitySpan.textContent = inputQuantity;
+    
+            newListElement.appendChild(emojiSpan);
+            newListElement.appendChild(textSpan);
+            newListElement.appendChild(quantitySpan);
+    
+            const buttons = createButtons();
+            buttons.forEach(button => {
+                newListElement.appendChild(button);
+            });
+    
+            currentList.appendChild(newListElement);
+    
+            inputBox.value = "";
+            inputBoxQuantity.value = "";
+    
+            addEmojiClickListener(emojiSpan);
+            crossOut(newListElement);
+            deleteItem(newListElement);
+            editButton(newListElement);
+            quantityButtons(newListElement);
+        }
+    }
+
 });
 
-function addElement() {
-
-    const inputValue = document.getElementById('inputBox').value.trim();
-    const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
-    const currentPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
-    const currentList = shoppingLists[currentPage];
-
-
-    if (inputValue !== "") {
-
-        const newListElement = document.createElement("li");
-
-        const emojiSpan = document.createElement("span");
-        emojiSpan.classList.add("emoji");
-        emojiSpan.textContent = '○';
-
-        const textSpan = document.createElement("span");
-        textSpan.classList.add("text");
-        textSpan.textContent = inputValue;
-
-        const quantitySpan = document.createElement("span");
-        quantitySpan.classList.add("quantity");
-        quantitySpan.textContent = inputQuantity;
-
-        newListElement.appendChild(emojiSpan);
-        newListElement.appendChild(textSpan);
-        newListElement.appendChild(quantitySpan);
-
-        const buttons = createButtons();
-        buttons.forEach(button => {
-            newListElement.appendChild(button);
-        });
-
-        currentList.appendChild(newListElement);
-
-        inputBox.value = "";
-        inputBoxQuantity.value = "";
-
-        addEmojiClickListener(emojiSpan);
-    }
-}
 
 
 
@@ -190,6 +201,18 @@ function nightMode() {
     var body = document.body;
     body.classList.toggle('nightMode');
 }
+
+
+
+
+document.getElementById("loginButton").addEventListener('click', login);
+
+
+function burger() {
+    var menuBurger = document.querySelector('.menuBurger');
+        menuBurger.classList.toggle('change');
+}
+
 
 
 
