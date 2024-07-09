@@ -1,42 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-buy list</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-
-<body>
-    <div class="header">
-        <button id="LogIn">Login</button>
-        <h1 id="mainTitle">To buy:</h1>
-        <span id="menuBurger" class="menuBurger">&#9776;</span>
-    </div>
-    <nav class="navPages">
-        <ul>
-            <li><input type="radio" id="tab1" name="tab" checked><label for="tab1" data-page="groceries">Groceries</label></li>
-            <li><input type="radio" id="tab2" name="tab"><label for="tab2" data-page="drugstore">Drugstore</label></li>
-            <li><input type="radio" id="tab3" name="tab"><label for="tab3" data-page="hardware-store">Hardware store</label></li>
-            <li><input type="radio" id="tab4" name="tab"><label for="tab4" data-page="other">Other</label></li>
-        </ul>
-    </nav>
-
-
-    <div class="row">
-        <input type="text" id="inputBox" placeholder="Add an element">
-        <input type="text" id="inputBoxQuantity" placeholder="Quantity">
-        <button id="addItem">Add item</button>
-    </div>
-
-<!-- i wanna target with css only buttons from row and shoppingList. nav .navlinks button {} ?-->
-    <ul id="groceries" class="shoppingList">
-        <li><span class="emoji">○</span> <span class="text">Item 1 abc</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
     </ul>
 
     <div class="image-column left-column"></div>
