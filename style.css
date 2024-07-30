@@ -240,10 +240,15 @@ button:active {
 
 
 @media screen and (max-width: 650px) {
+    .navPages.show {
+        display: block;
+    }
+    
     #menuBurger {
         display: block;
         cursor: pointer;
     }
+
     #bar1, #bar2, #bar3 {
         background-color: white;
     }
@@ -259,24 +264,32 @@ button:active {
     .change #bar3 {
         transform: rotate(45deg) translate(-8px, -4px);
     }
+
+    .make_navPages_visible .navPages {
+        display: block;
+    }
+
     #menuBurger:hover {
         background-color: greenyellow;
         /*background: var(--fifthCol);*/
         border: 2px solid var(--fifthCol);
     }
+
     .navPages {
         margin: 0;
         padding: 0;
-        /* display: none; */
+        display: none;
         flex-direction: column;
         align-items: flex-start;
         padding: 0 21%;
     }
+
     .navPages ul {
         width: 100%;
         flex-direction: column;
 
     }
+
     .navPages li {
         text-align: center;
     }
@@ -304,6 +317,9 @@ button:active {
         background-color: var(--fourthCol);
         border-radius: 0;
         padding: 5px;
+        /* here show navPages? */
+
+
     /*background-color: var(--fifthCol);*/
     }
     
@@ -312,9 +328,6 @@ button:active {
         background-color: var(--firstCol);
         padding: 8px;
         border-radius: 0px;
-    }
-    .navPages.show {
-        display: flex;
     }
 
     h1 { 
