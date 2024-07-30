@@ -35,8 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById("loginButton").addEventListener('click', login);
-    document.querySelectorAll('.shoppingList .emoji').forEach(addEmojiClickListener);
+    document.querySelectorAll('.shoppingList .emoji').forEach(toggleEmoji);
     document.getElementById("addItem").addEventListener("click", addElement);
+    document.getElementById('header').addEventListener('click', openBurger);
     
     function crossOut(item) { /*
         var crossBtn = item.querySelector(".crossBtn");
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 
-    function addEmojiClickListener(emoji) {
+    function toggleEmoji(emoji) {
         var emojiList = ['○', '🐇', '🐢', '🗿'];
         emoji.addEventListener('click', function () {
             var currEmoji = emoji.textContent.trim();
@@ -140,25 +141,31 @@ document.addEventListener('DOMContentLoaded', function () {
             textSpan.classList.add("text");
             textSpan.textContent = inputValue;
     
-            const quantitySpan = document.createElement("span");
-            quantitySpan.classList.add("quantity");
-            quantitySpan.textContent = inputQuantity;
+            if (currPage != todo) {
+                const quantitySpan = document.createElement("span");
+                quantitySpan.classList.add("quantity");
+                quantitySpan.textContent = inputQuantity;
+            }
+
     
             newListElement.appendChild(emojiSpan);
             newListElement.appendChild(textSpan);
-            newListElement.appendChild(quantitySpan);
-    
-            const buttons = createButtons();
-            buttons.forEach(button => {
-                newListElement.appendChild(button);
-            });
-    
+            if (currPage != todo) {
+                newListElement.appendChild(quantitySpan);
+                const buttons = createButtons();
+                buttons.forEach(button => {
+                    newListElement.appendChild(button);
+                });
+            }
+            else if (currPage == todo) {
+
+            }
             currentList.appendChild(newListElement);
     
             inputBox.value = "";
             inputBoxQuantity.value = "";
     
-            addEmojiClickListener(emojiSpan);
+            toggleEmoji(emojiSpan);
             crossOut(newListElement);
             deleteItem(newListElement);
             editButton(newListElement);
@@ -180,21 +187,28 @@ function createButtons() {
     crossBtn.textContent = "✓";
     crossBtn.classList.add("crossBtn");
 
-    var substrBtn = document.createElement("button");
-    substrBtn.textContent = "+";
-    substrBtn.classList.add("quantityBtn", "increment");
-
-
-    var addBtn = document.createElement("button");
-    addBtn.textContent = "-";
-    addBtn.classList.add("quantityBtn", "decrement");
+    if (currPage != todo) {
+        var substrBtn = document.createElement("button");
+        substrBtn.textContent = "+";
+        substrBtn.classList.add("quantityBtn", "increment");
+    
+        var addBtn = document.createElement("button");
+        addBtn.textContent = "-";
+        addBtn.classList.add("quantityBtn", "decrement");
+    }
 
     var deleteBtn = document.createElement("button");
     deleteBtn.textContent = "x";
     deleteBtn.classList.add("deleteBtn");
 
-    return [deleteBtn, substrBtn, addBtn, crossBtn, editBtn];
+    if (currPage != todo) {
+        return [deleteBtn, substrBtn, addBtn, crossBtn, editBtn];
+    } else {
+        return [deleteBtn, crossBtn, editBtn];
+    }
 }
+
+
 
 
 function nightMode() {
@@ -205,63 +219,12 @@ function nightMode() {
 
 
 
-document.getElementById("loginButton").addEventListener('click', login);
-
-
-function burger() {
-    var menuBurger = document.querySelector('.menuBurger');
-        menuBurger.classList.toggle('change');
+function login() {
+    
 }
 
 
-
-
-
-//a common way to define an event listener function where e stands for the event object
-//this event object contains a lot of information about the event that occurred
-//anonymous function that takes one parameter e, which is the event object
-//is typically used as a callback for event listeners
-/*shoppingList.addEventListener('click', function (e) { //e is the event object, automatically passed to the event handler function when an event occurs
-        if (e.target && e.target.classList.contains('deleteBtn')) {
-            deleteItem()
-        }
-
-
-    }); 
-
-    listItems.forEach(function(item) {
-        crossOut(item);
-        deleteButton(item);
-        editButton(item);
-        quantityButtons(item);
-
-        var emoji = item.querySelector(".emoji");
-        addEmojiClickListener(emoji);
-    }); */
-
-
-
-
-
-
-
-//crossBtn, .addBtn, .substrBtn, .deleteBtn
-//if quantity 0 crossOut()
-//if crossOut set emoji to default
-
-//add button and quantity (with options kg/pcs/packs) for each
-//add tags(specific shop, or type of shop, z. B. cosmetic shop or pharmacy)
-//each item has a crossout button, quantity, edit/delete option and option of tags to it. can create new items
-//crossed out items "sink", going after non-crossed items, on top of other crossed items
-//toggle tags (for item/list) for "buy asap/not urgent/can wait for a long time/NULL"
-//add multiple pages or sections. toggle tags
-
-    //event delegation is the process of handling events on a parent element instead of binding the event listener to each child element individually
-
-    
-
-    //getElementById("shoppingList") returns a single element object representing the element
-
-    //event delegation is the process of handling events on a parent element instead of binding the event listener to each child element individually 
-//getElementById("shoppingList") returns a single element object representing the element 
-    //is used when you want to manipulate the shoppingList element itself or when you want to use event delegation to handle events for its children 
+function openBurger() {
+    document.getElementById('menuBurger').classList.toggle('change');
+    document.querySelector('.navPages').classList.toggle('show');
+}
