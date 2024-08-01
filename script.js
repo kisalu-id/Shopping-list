@@ -109,12 +109,15 @@ document.addEventListener('DOMContentLoaded', function () {
         emoji.textContent = emojiList[nextIndex];
     }
 
-
-    document.getElementById("inputBox").addEventListener("keydown", function (event) {
-        if (event.keyCode === 13) {
-            addElement();
-        }
-    });
+    function addEnterKeyListener(elementId) {
+        document.getElementById(elementId).addEventListener("keydown", function (event) {
+            if (event.keyCode === 13) {
+                addElement();
+            }
+        });
+    }
+    addEnterKeyListener("inputBox");
+    addEnterKeyListener("inputBoxQuantity");
 
 
     document.querySelectorAll('nav input[type="radio"]').forEach(function (radio) {
@@ -131,9 +134,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputValue = document.getElementById('inputBox').value.trim();
         const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
         const currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
-        const currentList = shoppingLists[currPage];
+        const currList = shoppingLists[currPage];
     
         if (inputValue !== "") {
+            if (!/^\d+(\.\d+)?$/.test(inputQuantity) || parseFloat(inputQuantity) <= 0) {
+                alert('Please enter a valid positive number for quantity.');
+                return;
+            }
             const newListElement = document.createElement("li");
             const emojiSpan = document.createElement("span");
             
@@ -157,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newListElement.appendChild(button);  //for todo I also need buttons, just less
             });
             
-            currentList.appendChild(newListElement);
+            currList.appendChild(newListElement);
     
             document.getElementById('inputBox').value = "";
             document.getElementById('inputBoxQuantity').value = "";
@@ -183,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
         editBtn.textContent = "Edit";
         buttons.push(editBtn);
 
-        if (inputQuantity) {
+        if (inputQuantity !== null) {
             const addBtn = document.createElement("button");
             addBtn.classList.add('quantityBtn', 'increment')
             addBtn.textContent = "+";
@@ -227,8 +234,19 @@ function openBurger() {
 
 
 
+
+
+//a common way to define an event listener function where e stands for the event object
+//this event object contains a lot of information about the event that occurred
+//anonymous function that takes one parameter e, which is the event object
+//is typically used as a callback for event listeners
+//crossBtn, .addBtn, .substrBtn, .deleteBtn
+
 //TODO
 //quantity - editable by clicking on text, by clicking on +-, can add that while creating new list element on top of the page
+//<button id="modeSwitchBtn" onclick="nightMode();">☀︎ / ☾</button>
+//fix todo
+//make burger navPages prettier
 
 //add button and quantity (with options kg/pcs/packs) for each
 //add pharmacy, clothes, ?
@@ -244,17 +262,10 @@ function openBurger() {
 
 
 
-//NOTES
+
 //getElementById("shoppingList") returns a single element object representing the element
 
 //event delegation is the process of handling events on a parent element instead of binding the event listener to each child element individually 
 //getElementById("shoppingList") returns a single element object representing the element 
 //is used when you want to manipulate the shoppingList element itself or when you want to use event delegation to handle events for its children 
-
-
-//a common way to define an event listener function where e stands for the event object
-//this event object contains a lot of information about the event that occurred
-//anonymous function that takes one parameter e, which is the event object
-//is typically used as a callback for event listeners
-//crossBtn, .addBtn, .substrBtn, .deleteBtn
 
