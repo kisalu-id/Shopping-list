@@ -129,18 +129,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
     function addElement() {
         var buttons;
-        const inputValue = document.getElementById('inputBox').value.trim();
-        const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
         const currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
         const currList = shoppingLists[currPage];
-    
-        if (inputValue !== "") {
+        const inputValue = document.getElementById('inputBox').value.trim();
+        if (currPage !== "todo") {
+            const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
+        }
+
+        if (inputValue !== "" && currPage !== "todo") {
             if (!/^\d+(\.\d+)?$/.test(inputQuantity) || parseFloat(inputQuantity) <= 0) {
                 alert('Please enter a valid positive number for quantity.');
                 return;
             }
+        }
             const newListElement = document.createElement("li");
             const emojiSpan = document.createElement("span");
             
@@ -154,10 +158,10 @@ document.addEventListener('DOMContentLoaded', function () {
             newListElement.appendChild(emojiSpan);
             newListElement.appendChild(textSpan);
     
-            if (currPage !== "todo") {
-                buttons = createButtons(inputQuantity);
+            if (currPage === "todo") {
+                buttons = createButtons(null);
             } else { 
-                buttons = createButtons(null);  //so the function createButtons will not add quantity
+                buttons = createButtons(inputQuantity);  //so the function createButtons will not add quantity
             }
 
             buttons.forEach(button => {
@@ -167,10 +171,12 @@ document.addEventListener('DOMContentLoaded', function () {
             currList.appendChild(newListElement);
     
             document.getElementById('inputBox').value = "";
-            document.getElementById('inputBoxQuantity').value = "";
+            if (currPage !== "todo") {
+                document.getElementById('inputBoxQuantity').value = "";
+            }
+
         }
-    }
-    
+
 
     function createButtons(inputQuantity) {
         var buttons = [];
@@ -212,14 +218,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
 function nightMode() {
     var body = document.body;
     body.classList.toggle('nightMode');
 }
-
-
 
 
 function login() {
