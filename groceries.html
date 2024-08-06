@@ -11,13 +11,13 @@
     <div id="header">
         <button id="LogIn">Login</button>
         <h1 id="mainTitle">To buy:</h1>
-        <div id="menuBurger" onclick="burger()"> 
-            <!-- on click it calls a function to open/close the menu bar as change the icon accordingly -->
+        <div id="menuBurger"> 
             <div id="bar1"></div>
             <div id="bar2"></div>
             <div id="bar3"></div>
         </div>
     </div>
+
 
     <nav class="navPages">
         <ul>
@@ -32,34 +32,31 @@
 
     <div id="row">
         <input type="text" id="inputBox" placeholder="Add an element">
-        <input type="text" id="inputBoxQuantity" placeholder="Quantity">
+        <input type="number" min="1" id="inputBoxQuantity" placeholder="Quantity" >
         <button id="addItem">Add item</button>
     </div>
 
+
 <!-- i wanna target with css only buttons from row and shoppingList. nav .navlinks button {} ?-->
     <ul id="groceries" class="shoppingList">
-        <li><span class="emoji">○</span> <span class="text">Item 1 abc</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
-        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">x</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 1 abc</span> <button class="deleteBtn">✕</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 2</span> <button class="deleteBtn">✕</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 3</span> <button class="deleteBtn">✕</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 4</span> <button class="deleteBtn">✕</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
+        <li><span class="emoji">○</span> <span class="text">Item 5</span> <button class="deleteBtn">✕</button> <button class="quantityBtn increment">+</button> <span class="quantity">1</span> <button class="quantityBtn decrement">-</button> <button class="crossBtn">✓</button> <button class="editBtn">Edit</button></li>
     </ul>
+
 
     <div class="image-column left-column"></div>
     <div class="image-column right-column"></div>
 
-    <!-- <button class="crossBtn">✓</button> <button class="addBtn">+</button> <button class="substrBtn">-</button> <button class="deleteBtn">x</button>
-    -->
     <br />
 
     <p id="end">Have a nice day!</p>
-    <button id="modeSwitchBtn" onclick="nightMode();">☀︎ / ☾</button>
+    <button id="modeSwitchBtn">☀︎ / ☾</button>
     <script src="script.js"></script>
 </body>
 </html>
 
-<!--
-from mobile move navig bar into hamburger
-quantity - editable by clicking on text, by clicking on +-, can add that while creating new list element on top of the page
-do several folders, to buy groceries, drogerie, household items, rest
+<!-- <button class="crossBtn">✓</button> <button class="addBtn">+</button> <button class="substrBtn">-</button> <button class="deleteBtn">x</button>
 -->
