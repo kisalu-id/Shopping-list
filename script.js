@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputBox = document.getElementById("inputBox");
     const inputBoxQuantity = document.getElementById("inputBoxQuantity");
 
+    const dayImages = ['SL-day-mode.png', 'SL-day-mode1.png', 'SL-day-mode2.png'];
+    const nightImages = ['SL-night-mode.png', 'SL-night-mode1.png', 'SL-night-mode2.png'];
 
     document.addEventListener('click', function (event) {
         const target = event.target;
@@ -38,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
             openBurger(target);
         } else if (target.matches('#modeSwitchBtn')) {
             nightMode();
+        }   else if (target.closest('.left-column, .right-column')) {
+            cycleImages();
         }
     });
 
@@ -214,6 +218,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return buttons;
     }
+
+
+
+    var dayIndex = 0;
+    var nightIndex = 0;
+    
+    leftColumn.style.backgroundImage = `url('${images[index]}')`;
+    rightColumn.style.backgroundImage = `url('${images[index]}')`;
+
+    function cycleImages() {
+        const isNightMode = document.body.classList.contains('nightMode');
+        var images = isNightMode ? nightImages : dayImages;
+        var index = isNightMode ? nightIndex : dayIndex;
+
+
+        index = (index + 1) % images.length;
+
+
+        const leftColumn = document.querySelector('.left-column');
+        const rightColumn = document.querySelector('.right-column');
+
+        leftColumn.style.backgroundImage = `url('${images[index]}')`;
+        rightColumn.style.backgroundImage = `url('${images[index]}')`;
+
+        if (isNightMode) {
+            
+            nightIndex = index;
+        } else {
+            dayIndex = index;
+        }
+    }
+    //TODO: write explanatory comments
 });
 
 
@@ -233,41 +269,3 @@ function openBurger() {
     document.getElementById('menuBurger').classList.toggle('change');
     document.querySelector('.navPages').classList.toggle('show');
 }
-
-
-
-
-
-//a common way to define an event listener function where e stands for the event object
-//this event object contains a lot of information about the event that occurred
-//anonymous function that takes one parameter e, which is the event object
-//is typically used as a callback for event listeners
-//crossBtn, .addBtn, .substrBtn, .deleteBtn
-
-//TODO
-//quantity - editable by clicking on text, by clicking on +-, can add that while creating new list element on top of the page
-//<button id="modeSwitchBtn" onclick="nightMode();">☀︎ / ☾</button>
-//fix todo
-//make burger navPages prettier
-
-//add button and quantity (with options kg/pcs/packs) for each
-//add pharmacy, clothes, ?
-
-
-//DESCRIPTION
-//each item has a crossout button, quantity, edit/delete option and option of tags to it. can create new items
-//if quantity is 0, then crossOut()
-//crossed out items "sink", going after non-crossed items, on top of other crossed items
-//toggle tags (for item/list) for "buy asap/not urgent/can wait for a long time/NULL"
-//multiple pages
-
-
-
-
-
-//getElementById("shoppingList") returns a single element object representing the element
-
-//event delegation is the process of handling events on a parent element instead of binding the event listener to each child element individually 
-//getElementById("shoppingList") returns a single element object representing the element 
-//is used when you want to manipulate the shoppingList element itself or when you want to use event delegation to handle events for its children 
-
