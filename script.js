@@ -8,14 +8,26 @@ document.addEventListener('DOMContentLoaded', function () {
         todo: document.getElementById("todo")
     };
 
+    const dayImages = ['SL-day-mode1.png', 'SL-day-mode2.png', 'SL-day-mode3.png', 'SL-day-mode4.png'];
+    const nightImages = ['SL-night-mode1.png', 'SL-night-mode2.png', 'SL-night-mode3.png', 'SL-night-mode4.png'];
+
+    var dayIndex = 0;
+    var nightIndex = 0;
+    
+    const leftColumn = document.querySelector('.left-column');
+    const rightColumn = document.querySelector('.right-column');
+
+    leftColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;  //get current index
+    rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;
+
+
+
     var navPages = document.querySelectorAll('nav input[name="tab"]');
     var currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
     const loginBtn = document.getElementById("LogIn");
     const inputBox = document.getElementById("inputBox");
     const inputBoxQuantity = document.getElementById("inputBoxQuantity");
 
-    const dayImages = ['SL-day-mode.png', 'SL-day-mode1.png', 'SL-day-mode2.png'];
-    const nightImages = ['SL-night-mode.png', 'SL-night-mode1.png', 'SL-night-mode2.png'];
 
     document.addEventListener('click', function (event) {
         const target = event.target;
@@ -44,6 +56,24 @@ document.addEventListener('DOMContentLoaded', function () {
             cycleImages();
         }
     });
+
+    function cycleImages() {
+        const isNightMode = document.body.classList.contains('nightMode');
+        var images = isNightMode ? nightImages : dayImages;
+        var index = isNightMode ? nightIndex : dayIndex;
+
+        index = (index + 1) % images.length;
+
+        //upodate
+        leftColumn.style.backgroundImage = `url('${images[index]}')`;
+        rightColumn.style.backgroundImage = `url('${images[index]}')`;
+
+        if (isNightMode) {
+            nightIndex = index;
+        } else {
+            dayIndex = index;
+        }
+    }
 
 
     function openBurger(target) {
@@ -106,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     function toggleEmoji(emoji) {
-        var emojiList = ['○', '🐇', '🐢', '🗿'];
+        var emojiList = ['○', '🐇', '🐢', '🪨'];
         var currEmoji = emoji.textContent.trim();
         var currIndex = emojiList.indexOf(currEmoji);
         var nextIndex = (currIndex + 1) % emojiList.length;
@@ -219,37 +249,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return buttons;
     }
 
-
-
-    var dayIndex = 0;
-    var nightIndex = 0;
-    
-    leftColumn.style.backgroundImage = `url('${images[index]}')`;
-    rightColumn.style.backgroundImage = `url('${images[index]}')`;
-
-    function cycleImages() {
-        const isNightMode = document.body.classList.contains('nightMode');
-        var images = isNightMode ? nightImages : dayImages;
-        var index = isNightMode ? nightIndex : dayIndex;
-
-
-        index = (index + 1) % images.length;
-
-
-        const leftColumn = document.querySelector('.left-column');
-        const rightColumn = document.querySelector('.right-column');
-
-        leftColumn.style.backgroundImage = `url('${images[index]}')`;
-        rightColumn.style.backgroundImage = `url('${images[index]}')`;
-
-        if (isNightMode) {
-            
-            nightIndex = index;
-        } else {
-            dayIndex = index;
-        }
-    }
-    //TODO: write explanatory comments
 });
 
 
