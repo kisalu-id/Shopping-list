@@ -17,10 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const leftColumn = document.querySelector('.left-column');
     const rightColumn = document.querySelector('.right-column');
 
-    leftColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;  //get current index
-    rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;
-
-
+    leftColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`; //template literal - special type of string in JavaScript that can contain embedded expressions
+    rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`; //dynamically sets the background image of an HTML element
 
     var navPages = document.querySelectorAll('nav input[name="tab"]');
     var currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
@@ -141,7 +139,32 @@ document.addEventListener('DOMContentLoaded', function () {
         var currIndex = emojiList.indexOf(currEmoji);
         var nextIndex = (currIndex + 1) % emojiList.length;
         emoji.textContent = emojiList[nextIndex];
+
+        rearrangeEmpjiList(emoji.closest('li'), emoji.textContent);
     }
+
+    function rearrangeEmpjiList(listItem, emoji) {
+        var parentList = listItem.parentNode;
+        parentList.removeChild(listItem);
+
+        if (emoji === '🐇') {
+            //top
+        } else if (emoji === '○') {
+            // top-middle
+        } else if (emoji === '🐢') {
+            //lower then  '○'
+        } else if (emoji === '🗿') {
+            //bottom
+        }
+
+
+
+
+
+
+
+
+
 
     function addEnterKeyListener(elementId) {
         document.getElementById(elementId).addEventListener("keydown", function (event) {
@@ -268,3 +291,5 @@ function openBurger() {
     document.getElementById('menuBurger').classList.toggle('change');
     document.querySelector('.navPages').classList.toggle('show');
 }
+
+
