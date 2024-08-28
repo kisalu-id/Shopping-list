@@ -143,27 +143,39 @@ document.addEventListener('DOMContentLoaded', function () {
         rearrangeEmpjiList(emoji.closest('li'), emoji.textContent);
     }
 
-    function rearrangeEmpjiList(listItem, emoji) {
+
+    function rearrangeEmojiList(listItem, emoji) {
         var parentList = listItem.parentNode;
+        var allItems = Array.from(parentList.children);
+    
+        // Remove the item to reposition it
         parentList.removeChild(listItem);
-
+    
+        // Determine the target position based on the emoji
         if (emoji === '🐇') {
-            //top
+            // Move to the top
+            parentList.insertBefore(listItem, parentList.firstChild);
         } else if (emoji === '○') {
-            // top-middle
+            // Move below any '🐇' items, but above others
+            var referenceItem = allItems.find(item => item.textContent.trim() === '🐇');
+            if (referenceItem) {
+                parentList.insertBefore(listItem, referenceItem.nextElementSibling || null);
+            } else {
+                parentList.appendChild(listItem);
+            }
         } else if (emoji === '🐢') {
-            //lower then  '○'
-        } else if (emoji === '🗿') {
-            //bottom
+            // Move below any '○' items
+            var referenceItem = allItems.find(item => item.textContent.trim() === '○');
+            if (referenceItem) {
+                parentList.insertBefore(listItem, referenceItem.nextElementSibling || null);
+            } else {
+                parentList.appendChild(listItem);
+            }
+        } else if (emoji === '🪨') {
+            // Move to the bottom
+            parentList.appendChild(listItem);
         }
-
-
-
-
-
-
-
-
+    }
 
 
     function addEnterKeyListener(elementId) {
