@@ -5,7 +5,6 @@
     --fourthCol: #c4e3f8; /*li:nth-child(odd)*/
     --fifthCol: #c1c6d6; /*hover*/
     --sixthCol: #607796; /*crossout*/
-    --backImg: url('SL-day-mode.png');
     --column-width: 20%;
 }
 
@@ -17,7 +16,6 @@
     --fourthCol: #1d3452;
     --fifthCol: #535869; /*hover*/
     --sixthCol: #607796; /*crossout*/
-    --backImg: url('SL-night-mode.png');
     --column-width: 20%;
 }
 
@@ -81,6 +79,7 @@ h1 {
     padding: 0px;
     display: flex;
     margin: 15px 0 0 0;
+    padding: 0;
 }
 
 input[type="radio"] {
@@ -147,8 +146,8 @@ button:active {
     display: flex;
     justify-content: space-between;
     font-size: 80%;
-    margin: 0.7% 21%;
-
+    margin: 0.7% calc(var(--column-width) + 1.2%);
+    
 }
 
 #inputBox, #inputBoxQuantity {
@@ -157,7 +156,7 @@ button:active {
     border: 1px solid var(--fifthCol);
     border-radius: 100px;
     cursor: text;
-    padding-left: 3%;
+    padding: 5px 12px;
 }
 #inputBox {
     width: calc(100% - var(--column-width));
@@ -175,11 +174,14 @@ button:active {
 }
 
 .shoppingList li {
-    padding: 12px calc(var(--column-width) + 2%) 12px calc(var(--column-width) - 2%); /**cruuuuutch :C*/
+    /* padding: 12px calc(var(--column-width) + 2%) 12px calc(var(--column-width) - 2%);  */
+    /* *cruuuuutch :C */
+    margin: 0 var(--column-width);
     list-style: none;
     color: var(--secondCol);
     overflow-y: auto;
     overflow-x: auto;
+    padding: 12px 12px;
     /* box-shadow: 0 0 5px rgba(0,0,0,0.1); */
 }
 
@@ -191,13 +193,20 @@ button:active {
     text-decoration: line-through;
     color: var(--sixthCol);
 }
+.shoppingList ul {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    padding: 0;
+}
 
 .left-column, .right-column {
     position: fixed;
     top: 0;
     bottom: 0;
     width: var(--column-width);
-    background-image: var(--backImg);
+    /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .left-column {
@@ -274,7 +283,6 @@ button:active {
 
     .navPages {
         margin: 0;
-        padding: 0;
         display: none;
         flex-direction: column;
         align-items: flex-start;
@@ -294,8 +302,8 @@ button:active {
     .navPages label {
         display: flex;
         font-size: 150%;
-        color: rgb(103, 58, 58);
-        background-color: rgb(169, 156, 209);
+        color: var(--secondCol);
+        background-color: var(--thirdCol);
 
         border-radius: none;
         border: none;
