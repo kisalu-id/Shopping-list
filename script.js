@@ -8,17 +8,45 @@ document.addEventListener('DOMContentLoaded', function () {
         todo: document.getElementById("todo")
     };
 
-    const dayImages = ['SL-day-mode1.png', 'SL-day-mode2.png', 'SL-day-mode3.png', 'SL-day-mode4.png'];
-    const nightImages = ['SL-night-mode1.png', 'SL-night-mode2.png', 'SL-night-mode3.png', 'SL-night-mode4.png'];
+    const list = document.getElementById('groceries');
+            let draggedItem = null;
 
-    var dayIndex = 0;
-    var nightIndex = 0;
-    
-    const leftColumn = document.querySelector('.left-column');
-    const rightColumn = document.querySelector('.right-column');
+            list.addEventListener('dragstart', function(e) {
+                draggedItem = e.target;
+                e.target.classList.add('dragging');
+            });
 
-    leftColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`; //template literal - special type of string in JavaScript that can contain embedded expressions
-    rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`; //dynamically sets the background image of an HTML element
+            list.addEventListener('dragend', function(e) {
+                e.target.classList.remove('dragging');
+                draggedItem = null;
+            });
+
+            list.addEventListener('dragover', function(e) {
+                e.preventDefault(); // Necessary to allow dropping
+            });
+
+            list.addEventListener('dragenter', function(e) {
+                const target = e.target;
+                if (target && target.nodeName === 'LI' && target !== draggedItem) {
+                    target.classList.add('drag-over');
+                }
+            });
+
+            list.addEventListener('dragleave', function(e) {
+                const target = e.target;
+                if (target && target.nodeName === 'LI') {
+                    target.classList.remove('drag-over');
+                }
+            });
+
+            list.addEventListener('drop', function(e) {
+                e.preventDefault();
+                const target = e.target;
+                if (target && target.nodeName === 'LI' && target !== draggedItem) {
+                    target.classList.remove('drag-over');
+                    list.insertBefore(draggedItem, target);
+                }
+            });
 
     var navPages = document.querySelectorAll('nav input[name="tab"]');
     var currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
@@ -54,24 +82,42 @@ document.addEventListener('DOMContentLoaded', function () {
             cycleImages();
         }
     });
+    const dayImages = ['SL-day-mode1.png', 'SL-day-mode2.png', 'SL-day-mode3.png', 'SL-day-mode4.png'];
+    const nightImages = ['SL-night-mode1.png', 'SL-night-mode2.png', 'SL-night-mode3.png', 'SL-night-mode4.png'];
+
+    var dayIndex = 0;
+    var nightIndex = 0;
+    
+    const leftColumn = document.querySelector('.left-column');
+    const rightColumn = document.querySelector('.right-column');
+
+
+    leftColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;
+    rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;
+
 
     function cycleImages() {
         const isNightMode = document.body.classList.contains('nightMode');
         var images = isNightMode ? nightImages : dayImages;
         var index = isNightMode ? nightIndex : dayIndex;
-
-        index = (index + 1) % images.length;
-
-        //upodate
-        leftColumn.style.backgroundImage = `url('${images[index]}')`;
-        rightColumn.style.backgroundImage = `url('${images[index]}')`;
-
+    
+        var newIndex = (index + 1) % images.length;
+    
+        // Update the background images
+        leftColumn.style.backgroundImage = `url('${images[newIndex]}')`;
+        rightColumn.style.backgroundImage = `url('${images[newIndex]}')`;
+    
         if (isNightMode) {
-            nightIndex = index;
+            nightIndex = newIndex;
         } else {
-            dayIndex = index;
+            dayIndex = newIndex;
         }
     }
+    
+
+
+
+
 
 
     function openBurger(target) {
@@ -139,11 +185,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var currIndex = emojiList.indexOf(currEmoji);
         var nextIndex = (currIndex + 1) % emojiList.length;
         emoji.textContent = emojiList[nextIndex];
-
-        rearrangeEmpjiList(emoji.closest('li'), emoji.textContent);
+    
+        rearrangeEmojiList(emoji.closest('li'), emoji.textContent);
     }
-
-
+    
     function rearrangeEmojiList(listItem, emoji) {
         var parentList = listItem.parentNode;
         var allItems = Array.from(parentList.children);
@@ -176,6 +221,13 @@ document.addEventListener('DOMContentLoaded', function () {
             parentList.appendChild(listItem);
         }
     }
+
+
+
+    
+
+
+
 
 
     function addEnterKeyListener(elementId) {
