@@ -78,10 +78,22 @@ document.addEventListener('DOMContentLoaded', function () {
             openBurger(target);
         } else if (target.matches('#modeSwitchBtn')) {
             nightMode();
-        }   else if (target.closest('.left-column, .right-column')) {
-            cycleImages();
+        } else if (target.closest('.left-column')) {
+            cycleImages('prev');
+        } else if (target.closest('.right-column')) {
+            cycleImages('next');
         }
     });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 37) {          //left arrow key
+            cycleImages('prev');
+        } else if (event.keyCode === 39) {   //right key
+            cycleImages('next');
+        }
+    });
+
+    
     const dayImages = ['SL-day-mode1.png', 'SL-day-mode2.png', 'SL-day-mode3.png', 'SL-day-mode4.png'];
     const nightImages = ['SL-night-mode1.png', 'SL-night-mode2.png', 'SL-night-mode3.png', 'SL-night-mode4.png'];
 
@@ -96,13 +108,19 @@ document.addEventListener('DOMContentLoaded', function () {
     rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;
 
 
-    function cycleImages() {
+    function cycleImages(direction = 'next') {     //next as a default value
         const isNightMode = document.body.classList.contains('nightMode');
         var images = isNightMode ? nightImages : dayImages;
         var index = isNightMode ? nightIndex : dayIndex;
     
         var newIndex = (index + 1) % images.length;
-    
+
+        if (direction === 'prev') {
+            newIndex = (index - 1 + images.length) % images.length;
+        } else {
+            newIndex = (index + 1) % images.length;
+        }
+            
         // Update the background images
         leftColumn.style.backgroundImage = `url('${images[newIndex]}')`;
         rightColumn.style.backgroundImage = `url('${images[newIndex]}')`;
@@ -113,11 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
             dayIndex = newIndex;
         }
     }
-    
-
-
-
-
 
 
     function openBurger(target) {
