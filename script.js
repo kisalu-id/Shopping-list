@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             list.addEventListener('dragover', function(e) {
-                e.preventDefault(); // Necessary to allow dropping
+                e.preventDefault(); //to allow dropping
             });
 
             list.addEventListener('dragenter', function(e) {
@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    
     const dayImages = ['SL-day-mode1.png', 'SL-day-mode2.png', 'SL-day-mode3.png', 'SL-day-mode4.png'];
     const nightImages = ['SL-night-mode1.png', 'SL-night-mode2.png', 'SL-night-mode3.png', 'SL-night-mode4.png'];
 
@@ -131,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dayIndex = newIndex;
         }
     }
+
 
 
     function openBurger(target) {
@@ -201,20 +201,17 @@ document.addEventListener('DOMContentLoaded', function () {
     
         rearrangeEmojiList(emoji.closest('li'), emoji.textContent);
     }
-    
     function rearrangeEmojiList(listItem, emoji) {
         var parentList = listItem.parentNode;
         var allItems = Array.from(parentList.children);
     
-        // Remove the item to reposition it
         parentList.removeChild(listItem);
     
-        // Determine the target position based on the emoji
         if (emoji === '🐇') {
-            // Move to the top
+            //move to the top
             parentList.insertBefore(listItem, parentList.firstChild);
         } else if (emoji === '○') {
-            // Move below any '🐇' items, but above others
+            // Move below any "rabbit" tag, but above others
             var referenceItem = allItems.find(item => item.textContent.trim() === '🐇');
             if (referenceItem) {
                 parentList.insertBefore(listItem, referenceItem.nextElementSibling || null);
@@ -222,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 parentList.appendChild(listItem);
             }
         } else if (emoji === '🐢') {
-            // Move below any '○' items
+            //move below "o"
             var referenceItem = allItems.find(item => item.textContent.trim() === '○');
             if (referenceItem) {
                 parentList.insertBefore(listItem, referenceItem.nextElementSibling || null);
@@ -230,17 +227,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 parentList.appendChild(listItem);
             }
         } else if (emoji === '🪨') {
-            // Move to the bottom
+            //move to the bottom
             parentList.appendChild(listItem);
         }
     }
-
-
-
-    
-
-
-
 
 
     function addEnterKeyListener(elementId) {
@@ -360,7 +350,19 @@ function nightMode() {
 
 
 function login() {
-    
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!username || !password) {
+        alert('Please enter both a username and password');
+    }
+
+    if (validateUsername()) {
+        //log in
+        
+    } else {
+        alert('Invalid username or password.');
+    }
 }
 
 
@@ -368,5 +370,3 @@ function openBurger() {
     document.getElementById('menuBurger').classList.toggle('change');
     document.querySelector('.navPages').classList.toggle('show');
 }
-
-
