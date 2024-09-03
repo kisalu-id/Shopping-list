@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
     var navPages = document.querySelectorAll('nav input[name="tab"]');
-    var currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
+    var currPage = getCurrPage()
     const loginBtn = document.getElementById("LogIn");
     const inputBox = document.getElementById("inputBox");
     const inputBoxQuantity = document.getElementById("inputBoxQuantity");
@@ -201,6 +201,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
         rearrangeEmojiList(emoji.closest('li'), emoji.textContent);
     }
+
+
+
     function rearrangeEmojiList(listItem, emoji) {
         var parentList = listItem.parentNode;
         var allItems = Array.from(parentList.children);
@@ -240,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     addEnterKeyListener("inputBox");
     addEnterKeyListener("inputBoxQuantity");
 
@@ -254,13 +258,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    function getCurrPage() {
+        return document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
+    }
+
+
     function addElement() {
         var buttons;
-        const currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
+        var currPage = getCurrPage()
         const currList = shoppingLists[currPage];
         const inputValue = document.getElementById('inputBox').value.trim();
+        var inputQuantity;
+
+        if (!inputValue) {
+            alert('Please enter an item');
+            return;
+        }
+
         if (currPage !== "todo") {
-            const inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
+            inputQuantity = document.getElementById('inputBoxQuantity').value.trim() || '1';
         }
 
         if (inputValue !== "" && currPage !== "todo") {
@@ -282,18 +298,21 @@ document.addEventListener('DOMContentLoaded', function () {
             newListElement.appendChild(emojiSpan);
             newListElement.appendChild(textSpan);
     
-            if (currPage === "todo") {
-                buttons = createButtons(null);
-            } else { 
-                buttons = createButtons(inputQuantity);  //so the function createButtons will not add quantity
-            }
+            const buttons = createButtons(currPage === "todo" ? null : inputQuantity);
+
 
             buttons.forEach(button => {
                 newListElement.appendChild(button);  //for todo I also need buttons, just less
             });
             
-            currList.appendChild(newListElement);
-    
+            if (currList) {
+                currList.appendChild(newListElement);
+            } else {
+                alert("List not found!");
+            }
+            
+            
+
             document.getElementById('inputBox').value = "";
             if (currPage !== "todo") {
                 document.getElementById('inputBoxQuantity').value = "";
