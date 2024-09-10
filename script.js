@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         todo: document.getElementById("todo")
     };
 
-    const list = document.getElementById('groceries');
+    const list = document.getElementById(currentPage);
             let draggedItem = null;
 
             list.addEventListener('dragstart', function(e) {
@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
     var navPages = document.querySelectorAll('nav input[name="tab"]');
-    var currPage = getCurrPage()
+    //var currPage = getCurrPage()
+    var currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
     const loginBtn = document.getElementById("LogIn");
     const inputBox = document.getElementById("inputBox");
     const inputBoxQuantity = document.getElementById("inputBoxQuantity");
@@ -79,20 +80,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (target.matches('#modeSwitchBtn')) {
             nightMode();
         } else if (target.closest('.left-column')) {
-            cycleImages('prev');
+            cycleImages(1);
         } else if (target.closest('.right-column')) {
-            cycleImages('next');
+            cycleImages(2);
         }
     });
-
-    document.addEventListener('keydown', function (event) {
-        if (event.keyCode === 37) {          //left arrow key
-            cycleImages('prev');
-        } else if (event.keyCode === 39) {   //right key
-            cycleImages('next');
-        }
-    });
-
+    
     const dayImages = ['SL-day-mode1.png', 'SL-day-mode2.png', 'SL-day-mode3.png', 'SL-day-mode4.png'];
     const nightImages = ['SL-night-mode1.png', 'SL-night-mode2.png', 'SL-night-mode3.png', 'SL-night-mode4.png'];
 
@@ -107,14 +100,14 @@ document.addEventListener('DOMContentLoaded', function () {
     rightColumn.style.backgroundImage = `url('${dayImages[dayIndex]}')`;
 
 
-    function cycleImages(direction = 'next') {     //next as a default value
+    function cycleImages(direction) {     //next as a default value
         const isNightMode = document.body.classList.contains('nightMode');
         var images = isNightMode ? nightImages : dayImages;
         var index = isNightMode ? nightIndex : dayIndex;
     
         var newIndex = (index + 1) % images.length;
 
-        if (direction === 'prev') {
+        if (direction === 1) {
             newIndex = (index - 1 + images.length) % images.length;
         } else {
             newIndex = (index + 1) % images.length;
@@ -131,6 +124,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+
+
+
+
+    
+
+
+            
+
+
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 37) {          //left arrow key
+            cycleImages(1);
+        } else if (event.keyCode === 39) {   //right key
+            cycleImages(2);
+        }
+    });
 
 
     function openBurger(target) {
@@ -265,7 +276,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function addElement() {
         var buttons;
-        var currPage = getCurrPage()
+        //var currPage = getCurrPage()
+        var currPage = document.querySelector('nav input[name="tab"]:checked').nextElementSibling.getAttribute('data-page');
         const currList = shoppingLists[currPage];
         const inputValue = document.getElementById('inputBox').value.trim();
         var inputQuantity;
@@ -298,18 +310,18 @@ document.addEventListener('DOMContentLoaded', function () {
             newListElement.appendChild(emojiSpan);
             newListElement.appendChild(textSpan);
     
-            const buttons = createButtons(currPage === "todo" ? null : inputQuantity);
+            if (currPage === "todo") {
+                buttons = createButtons(null);
+            } else { 
+                buttons = createButtons(inputQuantity);  //so the function createButtons will not add quantity
+            }
 
 
             buttons.forEach(button => {
                 newListElement.appendChild(button);  //for todo I also need buttons, just less
             });
             
-            if (currList) {
-                currList.appendChild(newListElement);
-            } else {
-                alert("List not found!");
-            }
+            currList.appendChild(newListElement);
             
             
 
@@ -339,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
         editBtn.textContent = "Edit";
         buttons.push(editBtn);
 
-        if (inputQuantity !== null) {
+        if (inputQuantity) {
             const addBtn = document.createElement("button");
             addBtn.classList.add('quantityBtn', 'increment')
             addBtn.textContent = "+";
@@ -357,7 +369,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return buttons;
     }
-
 });
 
 
