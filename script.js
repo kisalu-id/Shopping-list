@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     var currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     const shoppingLists = {
         groceries: document.getElementById("groceries"),
@@ -127,14 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-    
-
-
-            
-
-
     document.addEventListener('keydown', function (event) {
         if (event.keyCode === 37) {          //left arrow key
             cycleImages(1);
@@ -175,11 +168,18 @@ document.addEventListener('DOMContentLoaded', function () {
         emoji.textContent = '○';
     }
 
-
     function deleteItem(item) {
-        item.remove();
-    }
+        const itemId = item.getAttribute('id');
 
+        fetch(`/groceries/${itemId}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => {
+            item.remove();
+        })
+    }
+    
 
     function editButton(item) {
         var textSpan = item.querySelector(".text");
@@ -400,3 +400,4 @@ function openBurger() {
     document.getElementById('menuBurger').classList.toggle('change');
     document.querySelector('.navPages').classList.toggle('show');
 }
+
